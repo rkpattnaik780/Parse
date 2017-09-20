@@ -17,6 +17,12 @@ $(document).ready(function () {
     /* ************************************ */
 
     /************************************* */
+    /**********STORE THE SESSION  **********/
+    /************************************* */
+
+    var currentSession;
+
+    /************************************* */
     /*******  CHECK IF LOGGED IN  **********/
     /***************************************/
 
@@ -51,6 +57,14 @@ $(document).ready(function () {
     }
 
     /***************************************************************************** */
+
+    /***************************************************************************** */
+    /********************** GET CURRENT SESSION TOKEN **************************** */
+    /***************************************************************************** */
+
+    var current = Parse.Session.current().then(session => {
+        currentSession = session.attributes.sessionToken;
+    });
 
 
     $("#submit").click(function () {
@@ -140,7 +154,7 @@ $(document).ready(function () {
 
         user.set("accountType", "student");
 
-        user.set("contactNo",Number($("#contact").val()));
+        user.set("contactNo", Number($("#contact").val()));
 
         /*  **************************************************************************** 
             *************** STORE THE REGISTERED USER TO CLOUD *************************
@@ -165,9 +179,22 @@ $(document).ready(function () {
 
                 var currentUser = Parse.User.current();
                 alert("Successfully registered");
-                Parse.User.logOut();
+                Parse.User.logOut().then(function () {
 
-                /*********************************************** */
+                    /********* SET THE CURRENT USER ***************** */
+
+                    Parse.User.become(currentSession).then(function (user) {
+                        alert("Correct user set");
+                        location.reload();
+                    }, function (error) {
+                        console.log(error);
+                    });
+
+                    /*********************************************** */
+
+                });
+
+
                 /* *********** SEND MESSAGE TO THE USER  ******* */
                 /*********************************************** */
 
