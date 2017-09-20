@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student</title>
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL STYLESHEETS****************
+             ******************************************************-->
+
+    <link href="../stylesheets/student.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+
+  <!--Nav Bar-->
+  <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span><i class = "fa fa-bars" aria-hidden = "true"></i></span>
+                </button>
+                <span class="navbar-brand">RECESS</span>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="./dashboard.html" id = "homeLink">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id = "regLink">Registration&nbsp
+                            <i class = "fa fa-caret-down" aria-hidden = "true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./studentreg.html" id = "regLink1" >Student Registration</a></li>
+                            <li><a href="./teacher_reg.html" id = "regLink2" >Teacher Registration</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="logout"><a><i class="fa fa-sign-out" aria-hidden = "true"></i> LogOut</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- My Edit -->
+    <div class = "container">
+        <div class = "row centered-form text-center">
+            <div id = "regform" class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class = "panel panel-info">
+                    <div class = "panel-heading">
+                        <div class = "panel-title">Student Registration</div>
+                    </div>
+                    <div class = "panel-body">
+                        
+                            <div class = "row">
+                                <div class = "form-group  col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <div class = "input-group">
+                                        <span class = "input-group-addon"><i class = "fa fa-university" aria-hidden="true"></i></span>
+                                        <input id="scode" class = "form-control" type = "text" placeholder = "School Code">
+                                    </div>
+                                </div>
+                                <div class = "form-group col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <div class = "input-group">
+                                        <span class = "input-group-addon"><i class = "fa fa-id-card" aria-hidden="true"></i></span>
+                                        <input id="regno" class = "form-control" type = "text" placeholder = "Registration Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class = "input-group">
+                                        <span class = "input-group-addon"><i class = "fa fa-user" aria-hidden="true"></i></span>
+                                        <input id="name" class = "form-control" type = "text" placeholder = "Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class = "input-group">
+                                        <span class = "input-group-addon"><i class = "fa fa-envelope" aria-hidden="true"></i></span>
+                                        <input id="email" class = "form-control" type = "email" placeholder = "Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "form-group col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <div class = "input-group">
+                                        <span class = "input-group-addon"><i class = "fa fa-phone" aria-hidden="true"></i></span>
+                                        <input id="contact" class = "form-control" type = "text" placeholder = "Contact Number">
+                                    </div>
+                                </div>
+                                <div class = "form-group col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                    <div class="input-group">
+                                        <span class = "input-group-addon">Std</span>
+                                        <select id="std" name="standard" class="form-control">
+                                                <option>I</option>
+                                                <option>II</option>
+                                                <option>III</option>
+                                                <option>IV</option>
+                                                <option>V</option>
+                                                <option>VI</option>
+                                                <option>VII</option>
+                                                <option>VIII</option>
+                                                <option>IX</option>
+                                                <option>X</option>
+                                                <option>XI</option>
+                                                <option>XII</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class = "form-group col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                    <div class="input-group">
+                                        <span class = "input-group-addon" >Sec</span>
+                                        <select id="section" name="section" class="form-control">
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option>C</option>
+                                                <option>D</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id = "submit" class = "btn btn-default btn-block">SUBMIT</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL JAVASCRIPT ****************
+             ******************************************************-->
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://npmcdn.com/parse/dist/parse.js"></script>
+    <script src = "../javascript/student.js"></script>
+</body>
+
+</html>

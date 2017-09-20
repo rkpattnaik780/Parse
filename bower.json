@@ -1,0 +1,21 @@
+{
+  "name": "busregistration",
+  "authors": [
+    "rkpattnaik780 <rkpattnaik780@gmail.com>"
+  ],
+  "description": "Registration form",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.7.0"
+  }
+}

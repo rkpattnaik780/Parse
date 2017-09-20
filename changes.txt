@@ -1,0 +1,7 @@
+19-09-2017
+    1 bower_components
+        1.1 Added font awesome
+    2 Edited all the html pages.
+    3 Added navbar to all pages except index.html
+    4 Added jquery for active class in navbar at the end of every js file.
+    5 Changed all the css files.
