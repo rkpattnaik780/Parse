@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>RECESS</title>
+    <title>EXAM SCHEDULE</title>
 
     <!-- ****************************************************** 
              *****************META PROPERTIES  ****************
@@ -15,7 +15,7 @@
              ***************** EXTERNAL STYLESHEETS****************
              ******************************************************-->
 
-    <link href="../stylesheets/schedule_exam.css" rel="stylesheet" type="text/css">
+    <link href="../stylesheets/newschedule_exam.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
@@ -63,6 +63,11 @@
                     </div>
                 </div>
 
+                <div class="btn-group btn-group-lg centered">
+                <button class = "btn btn-primary" id = "submit">SUBMIT</button>
+                <button class = "btn btn-danger" id = "clrform">CLEAR</button>
+                </div>
+
         </div> 
         </div>
 
@@ -98,9 +103,11 @@
                 </th>
 
                 <td>
-                    <button class = "btn btn-primary" id = "add_exam">+</button>
-
-                    <button class = "btn btn-info" id = "clear_exam">X</button>
+                    <div class="btn-group btn-group-sm">
+                    <button class = "btn btn-primary" id = "add_exam" title = "Add the test">+</button>
+                    <button class = "btn btn-info" id = "clear_exam" title = "Clear this test">-</button>
+                    <button class = "btn btn-danger" id = "clear_arr" title = "Clear the lists">X</button>
+                    </div>
                 </td>
 
             </tr>
@@ -120,7 +127,7 @@
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="https://npmcdn.com/parse/dist/parse.js"></script>
-    <script src="../javascript/schedule_exam.js"></script>
+    <script src="../javascript/newschedule_exam.js"></script>
 
 </body>
 
