@@ -8,19 +8,23 @@ $(document).ready(function () {
 
     /* ************************************ */
 
-    /****************************************
-     **** INITIALIZE THE USER OBJECT  *******
-     ***************************************/
-
-    var user = new Parse.User();
-
-    /* ************************************ */
-
     /************************************* */
-    /**********STORE THE SESSION  **********/
-    /************************************* */
+    /*******  GLOBAL VARIABLES  ************/
+    /***************************************/
 
-    var currentSession;
+    var teacher = [];
+    var subject = [];
+    var currentPeriod = 1;
+   // var daysPlanned = [];
+    var allDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    /**FUNCTION CALLS UPON LOADING **********/
+
+    loadTheDaysDropDown();
+
+    /**** SHOW THE PERIOD ON LOAD********* */
+
+    $("#period").html(currentPeriod);
 
     /************************************* */
     /*******  CHECK IF LOGGED IN  **********/
@@ -38,11 +42,11 @@ $(document).ready(function () {
      * DEFINE THE StudentTimetable CLASS  ***
      ****************************************/
 
-     class StudentTimetable extends Parse.Object {
+    class StudentTimetable extends Parse.Object {
         constructor() {
             super("StudentTimetable");
         }
-        static setAttributes(examname, standard, timing, subjectList, dateList, maxMarksList) {
+        static setAttributes(teacher, section, standard, subject, day) {
             var studentTimetable = new StudentTimetable();
             studentTimetable.set('schoolCode', currentUser.attributes.schoolID); // To be changed later .
             studentTimetable.set('teacher', teacher);
@@ -57,14 +61,129 @@ $(document).ready(function () {
 
     /********************************************************* */
 
+    /*****************  ON CLICK EVENTS ************************/
+
+    $("#submit").click(function () {
+
+        var standard = $("#std").val();
+        var section = $("#section").val();
+        var day = $("#day").val();
+
+        if(!(standard && section)){
+            alert("All fields are compulsary");
+        }else if( teacher.length === 0){
+            alert("No timetable set for the day");
+        }else{
+            saveToCloud(teacher, section, standard, subject, day);
+        }
+
+        
+
+    });
+
+    $("#add_day").click(function () {
+
+        var t = $("#teacher").val();
+        var s = $("#subject").val();
+
+        if (t && s) {
+            addToTheDay(t, s);
+            clearTheLowerForm();
+        } else {
+            alert("All fields are compulsary");
+            clearTheLowerForm();
+        }
+
+    });
+
+    /**************** CLEAR BUTTONS ************************** */
+
+    $("#clear_form").click(function () {
+        clearTheLowerForm();
+    });
+
+    $("#clrform").click(function () {
+        clearTheUpperForm();
+    });
+
+    $("#clear_day").click(function () {
+        clearTheDay();
+    });
+
     /************** GLOBAL FUNCTIONS ************************* */
 
-    function clearTheDay(){
+    function saveToCloud(teacher, section, standard, subject, day) {
+
+        var newStudentTimetable = StudentTimetable.setAttributes(teacher, section, standard, subject, day);
+
+        newStudentTimetable.save(null, {
+            success: function (newStudentTimetable) {
+                alert("StudentTimetable record added");
+                clearTheUpperForm();
+                clearTheLowerForm();
+                clearTheDay();
+                loadTheDaysDropDown();
+                currentPeriod = 1 ;
+                $("#period").html(currentPeriod);
+            },
+            error: function (newStudentTimetable, error) {
+                alert('Failed to create new object, with error code: ' + error.message);
+            }
+        });
 
     }
 
-    function clearTheEntireForm(){
-        
+    function clearTheDay() {
+
+        teacher = [];
+        subject = [];
+        currentPeriod = 1;
+        showTheTimeTableForDay();
+
+    }
+
+    function clearTheLowerForm() {
+        $("#subject").val("");
+        $("#teacher").val("");
+
+    }
+
+    function loadTheDaysDropDown() {
+
+        $("#day").html("");
+
+        for (var i = 0; i < allDays.length; i++) {
+                $("#day").append("<option>" + allDays[i] + "</option>");
+        }
+    }
+
+    function clearTheUpperForm() {
+        $("#std").val("I");
+        $("#section").val("A");
+    }
+
+    /****************** SHOW THE TIMETABLE FOR THE DAY *****************/
+
+    function showTheTimeTableForDay() {
+
+        $("#timetable").html("");
+
+        for (var i = 0; i < subject.length; i++) {
+            var temp = "<tr><td colspan = '2'> period : " + (i + 1) + "</td><td>" + subject[i] + "</td><td>" +
+                teacher[i] + "</td></tr>";
+            $("#timetable").append(temp);
+        }
+    }
+
+    /************ TO ADD TO THE TIMETABLE FOR PARTICULAR DAY ******/
+
+    function addToTheDay(t, s) {
+
+        teacher.push(t);
+        subject.push(s);
+        $("#period").html(++currentPeriod);
+        showTheTimeTableForDay();
+
     }
 
 
