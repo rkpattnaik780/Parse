@@ -1,0 +1,93 @@
+#submit{
+    margin : auto ;
+    box-shadow: 2px 2px 7px #888;
+    background: #7DBDE0 !important;
+    color: 	#EEEFEA !important;
+    border: none;
+    padding: 10px;
+    font-size: 15px !important;
+    max-width: 100px;
+}
+
+thead th{
+    text-align: center;
+    background: #c0deed;
+}
+
+
+
+.specialForm{
+    max-width: 500px !important;
+    min-width: 0px !important;
+    margin: 3% auto auto 38% !important;
+}
+
+.listHeading{
+    font-size: 16px !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: 	#EEEFEA !important;
+}
+
+#add_exam, #clear_exam, #clear_arr, #add_day, #clear_day, #clear_form{
+    margin : auto ;
+    box-shadow: 2px 2px 7px #888;
+    color: 	#EEEFEA !important;
+    border: none;
+    padding: 10px;
+    font-size: 15px !important;
+    width: 100px;
+}
+
+.panel{
+   min-width: 980px;
+   margin: 3% auto auto 18%;
+   box-shadow: 1px 1px 4px #888 !important;
+   border-radius: 0px !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .panel{
+        width: 450px;
+    }
+}
+
+.panel-heading{
+    color: 	#6EA3BE !important;
+}
+
+.panel-title{
+    font-size: 20px !important;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.panel .row {
+    padding: 10px;
+}
+
+.form-group .fa{
+    font-size: 18px !important;
+}
+
+/*
+
+    Nav Bar
+
+*/
+
+*{
+    margin : 0px ;
+    padding : 0px ;
+}
+
+
+
+
+
+
+/*
+
+    navbar-toggle edit
+
+*/

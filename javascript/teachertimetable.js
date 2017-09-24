@@ -150,4 +150,19 @@ $(document).ready(function () {
         standard = [];
         section = [];
     }
+
+    
+        /************************************* */
+        /*************  LOG OUT ****************/
+        /***************************************/
+    
+        $("#logout").click(function () {
+            if (currentUser) {
+                Parse.User.logOut().then(() => {
+                    location.href = "../index.html" ;
+                });
+            }
+        });
+    
+        /************************************* */
 });
