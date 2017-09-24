@@ -14,12 +14,6 @@ $(document).ready(function () {
 
     var user = new Parse.User();
 
-     /************************************* */
-    /**********STORE THE SESSION  **********/
-    /************************************* */
-
-    var currentSession ;
-
     /************************************* */
     /*******  CHECK IF LOGGED IN  **********/
     /***************************************/
@@ -56,14 +50,6 @@ $(document).ready(function () {
             return teacher;
         }
     }
-
-    /***************************************************************************** */
-    /********************** GET CURRENT SESSION TOKEN **************************** */
-    /***************************************************************************** */
-
-    var current = Parse.Session.current().then(session => {
-        currentSession = session.attributes.sessionToken ;
-    });
 
     /***************************************************************************** */
 
@@ -195,20 +181,7 @@ $(document).ready(function () {
 
                 var currentUser = Parse.User.current();
                 alert("Successfully registered");
-                Parse.User.logOut().then(function () {
-
-                    /********* SET THE CURRENT USER ***************** */
-
-                    Parse.User.become(currentSession).then(function (user) {
-                        alert("Correct user set");
-                        location.reload();
-                    }, function (error) {
-                        console.log(error);
-                    });
-
-                    /*********************************************** */
-
-                });
+                Parse.User.logOut();
 
                 sendMessage(contactNo, schoolCode, teacherID);
 

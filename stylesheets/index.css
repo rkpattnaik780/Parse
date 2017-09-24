@@ -1,5 +1,10 @@
 body{
-    background-color: #EEEFEA
+    background-color: #c0deed !important;
+    background-image: url("../images/registration_ui.png");
+    background-repeat: no-repeat;
+    background-size: 400px;
+    background-position: center;
+    background-position-y: 20px;
 }
 
 
@@ -9,12 +14,14 @@ body{
     background: #7DBDE0 !important;
     color: 	#EEEFEA !important;
     border: none;
+    padding: 15px;
+    font-size: 20px !important;
 }
 
 
 
 .panel{
-   max-width: 600px;
+   max-width: 300px;
    margin: 15% auto;
    box-shadow: 2px 2px 7px #888 !important;
 }
@@ -22,4 +29,21 @@ body{
 .panel-heading{
     color: 	#6EA3BE !important;
 }
+
+.panel-title{
+    font-size: 20px !important;
+}
+
+.panel .row {
+    padding: 10px;
+}
+
+.fa{
+    font-size: 25px !important;
+}
+
+.fa-key{
+    font-size: 20px !important;
+}
+
 

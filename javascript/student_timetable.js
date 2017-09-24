@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     /**** SHOW THE PERIOD ON LOAD********* */
 
-    $("#period").html(currentPeriod);
+    $("#period").val(currentPeriod);
 
     /************************************* */
     /*******  CHECK IF LOGGED IN  **********/
@@ -120,7 +120,7 @@ $(document).ready(function () {
                 clearTheDay();
                 loadTheDaysDropDown();
                 currentPeriod = 1 ;
-                $("#period").html(currentPeriod);
+                $("#period").val(currentPeriod);
             },
             error: function (newStudentTimetable, error) {
                 alert('Failed to create new object, with error code: ' + error.message);
@@ -156,7 +156,7 @@ $(document).ready(function () {
         $("#timetable").html("");
 
         for (var i = 0; i < subject.length; i++) {
-            var temp = "<tr><td colspan = '2'> period : " + (i + 1) + "</td><td>" + subject[i] + "</td><td>" +
+            var temp = "<tr><td>" + (i + 1) + "</td><td>" + subject[i] + "</td><td>" +
                 teacher[i] + "</td></tr>";
             $("#timetable").append(temp);
         }
@@ -168,10 +168,27 @@ $(document).ready(function () {
 
         teacher.push(t);
         subject.push(s);
-        $("#period").html(++currentPeriod);
+        $("#period").val(++currentPeriod);
         showTheTimeTableForDay();
 
     }
 
+
+
+
+
+    /************************************* */
+    /*************  LOG OUT ****************/
+    /***************************************/
+
+    $("#logout").click(function () {
+        if (currentUser) {
+            Parse.User.logOut().then(() => {
+                location.href = "../index.html" ;
+            });
+        }
+    });
+
+    /************************************* */
 
 });
