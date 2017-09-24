@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TEACHER TIMETABLES</title>
+
+    <!-- ****************************************************** 
+             *****************META PROPERTIES  ****************
+             ******************************************************-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL JAVASCRIPT ****************
+             ******************************************************-->
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://npmcdn.com/parse/dist/parse.js"></script>
+    <script src="../javascript/showteachertimetable.js"></script>
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL STYLESHEETS****************
+             ******************************************************-->
+
+    <link href="../stylesheets/showteachertimetable.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-app="teacherTimeTable" ng-controller="myCtrl">
+
+    <section class="container ng-cloak">
+
+        <h1>Timetables</h1>
+
+        <div ng-repeat="x in list">
+            <h3>Teacher's Id : {{x.attributes.teacherId}}</h3>
+            <p>Day - {{x.attributes.day}}</p>
+            <table class="table">
+
+                <tr>
+                    <td ng-repeat="c in x.attributes.class">{{c}}</td>
+                </tr>
+
+                <tr>
+                    <td ng-repeat="sec in x.attributes.section track by $index">{{sec}}</td>
+                </tr> 
+
+                <tr>
+                    <td ng-repeat="sub in x.attributes.subject">{{sub}}</td>           
+                </tr>
+            </table>
+        </div> 
+
+
+    </section>
+
+</body>
+
+</html>
