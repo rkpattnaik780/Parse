@@ -16,11 +16,7 @@ $(document).ready(function () {
     var subject = [];
     var currentPeriod = 1;
    // var daysPlanned = [];
-    var allDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    /**FUNCTION CALLS UPON LOADING **********/
-
-    loadTheDaysDropDown();
+   
 
     /**** SHOW THE PERIOD ON LOAD********* */
 
@@ -48,11 +44,11 @@ $(document).ready(function () {
         }
         static setAttributes(teacher, section, standard, subject, day) {
             var studentTimetable = new StudentTimetable();
-            studentTimetable.set('schoolCode', currentUser.attributes.schoolID); // To be changed later .
+            studentTimetable.set('schoolId', currentUser.attributes.schoolId); // To be changed later .
             studentTimetable.set('teacher', teacher);
             studentTimetable.set("section", section);
             studentTimetable.set("subject", subject);
-            studentTimetable.set("standard", standard);
+            studentTimetable.set("class", Number(standard));
             studentTimetable.set("day", day);
 
             return studentTimetable;
@@ -148,17 +144,8 @@ $(document).ready(function () {
 
     }
 
-    function loadTheDaysDropDown() {
-
-        $("#day").html("");
-
-        for (var i = 0; i < allDays.length; i++) {
-                $("#day").append("<option>" + allDays[i] + "</option>");
-        }
-    }
-
     function clearTheUpperForm() {
-        $("#std").val("I");
+        $("#std").val("1");
         $("#section").val("A");
     }
 

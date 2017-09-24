@@ -30,9 +30,9 @@ $(document).ready(function () {
         }
         static setAttributes( eventDate, title, content, attachment) {
             var event = new Event();
-            event.set('schoolCode', currentUser.attributes.schoolID);
-            event.set("eventDate", eventDate);
-            event.set('title', title);
+            event.set('schoolId', currentUser.attributes.schoolId);
+            event.set("eventDate", new Date(eventDate));
+            event.set('subject', title);
             event.set("content", content);
             event.set("attachment", attachment);
 
@@ -57,9 +57,9 @@ $(document).ready(function () {
             if (fileUpload.files.length > 0) {
                 var file = fileUpload.files[0];
                 var name = "event." + extractTheFileExtension(name); 
-
                 var parseFile = new Parse.File(name, file);
                // var newevent = event.setAttributes( title , content , parseFile);
+                alert("Successful");
                 saveToCloud(eventDate , title, content, parseFile);
             }
 
@@ -79,9 +79,9 @@ $(document).ready(function () {
     /************ GLOBAL FUNCTIONS  ***********/
 
     function saveToCloud(eventDate, title, content, attachment) {
-
+console.log("Savetocloud called");
         var newevent = Event.setAttributes(eventDate, title, content, attachment);
-
+console.log(newevent);
         newevent.save(null, {
             success: function (newevent) {
                 alert("event record added");

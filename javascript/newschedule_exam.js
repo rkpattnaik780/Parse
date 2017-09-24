@@ -13,7 +13,6 @@ $(document).ready(function () {
     /***************************************/
 
     var currentUser = Parse.User.current();
-    console.log(currentUser.attributes.schoolID);
     if (!currentUser) {
         alert("You need to login!");
         location.href = "../index.html";
@@ -53,13 +52,13 @@ $(document).ready(function () {
         }
         static setAttributes(examname, standard, timing, subjectList, dateList, maxMarksList) {
             var examSchedule = new ExamSchedule();
-            examSchedule.set('schoolCode', currentUser.attributes.schoolID); // To be changed later .
+            examSchedule.set('schoolId', currentUser.attributes.schoolId); // To be changed later .
             examSchedule.set('name', examname);
             examSchedule.set("timing", timing);
             examSchedule.set("subjectList", subjectList);
-            examSchedule.set("standard", standard);
+            examSchedule.set("class", Number(standard));
             examSchedule.set("dateList", dateList);
-            examSchedule.set("maxMarksList", maxMarksList);
+            examSchedule.set("maxMarks", maxMarksList);
 
             return examSchedule;
         }
@@ -194,7 +193,7 @@ $(document).ready(function () {
     /************** CLEAR THE EXAM DETAILS FUNCTION ****************************** */
     function clearExamDetails() {
         $("#ex_name").val("");
-        $("#std").val("I");
+        $("#std").val("1");
         $("#timing").val("");
     }
 

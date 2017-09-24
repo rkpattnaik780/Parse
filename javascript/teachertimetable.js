@@ -38,11 +38,11 @@ $(document).ready(function () {
         }
         static setAttributes(teacherId, section, standard, subject, day) {
             var teacherTimetable = new TeacherTimetable();
-            teacherTimetable.set('schoolCode', currentUser.attributes.schoolID); // To be changed later .
+            teacherTimetable.set('schoolId', currentUser.attributes.schoolId); // To be changed later .
             teacherTimetable.set('teacherId', teacherId);
             teacherTimetable.set("section", section);
             teacherTimetable.set("subject", subject);
-            teacherTimetable.set("standard", standard);
+            teacherTimetable.set("class", standard);
             teacherTimetable.set("day", day);
 
             return teacherTimetable;
@@ -70,7 +70,7 @@ $(document).ready(function () {
     $("#add_day").click(function () {
         if ($("#subject").val()) {
             subject.push($("#subject").val());
-            standard.push($("#std").val());
+            standard.push(Number($("#std").val()));
             section.push($("#section").val());
             loadTheTimeTable();
         }
@@ -139,7 +139,7 @@ $(document).ready(function () {
 
     function clearTheLowerForm() {
 
-        $("#std").val("I");
+        $("#std").val("1");
         $("#section").val("A");
         $("#subject").val("");
 

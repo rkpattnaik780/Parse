@@ -21,6 +21,18 @@ $(document).ready(function () {
     /************************************* */
 
     /****************************************
+     ** DEFINE THE SchoolHoliday CLASS  *****
+     ****************************************/
+
+    class SchoolHoliday extends Parse.Object {
+        constructor() {
+            super("SchoolHoliday");
+        }
+    }
+
+    /************************************* */
+
+    /****************************************
      ******* DEFINE THE Notice CLASS  ********
      ****************************************/
 
@@ -30,8 +42,8 @@ $(document).ready(function () {
         }
         static setAttributes(title, content) {
             var notice = new Notice();
-            notice.set('schoolCode', currentUser.attributes.schoolID);
-            notice.set('title', title);
+            notice.set('schoolId', currentUser.attributes.schoolId);
+            notice.set('subject', title);
             notice.set("content", content);
             notice.set("attachment", null);
 
@@ -41,14 +53,46 @@ $(document).ready(function () {
 
     /**************************************** */
 
+    /*********  GLOBAL VARIABLES  *************/
+
+    var title;
+    var month;
+    var dateTo;
+    var dateFrom;
+
     /********** SUBMIT BUTTON  ****************/
 
     $("#submit").click(function () {
 
-        var title = $("#title").val();
-        var month = $("#month").val();
-        var dateTo = Number($("#to").val());
-        var dateFrom = Number()
+        title = $("#title").val();
+        month = $("#month").val();
+        dateTo = Math.floor(Number($("#to").val()));
+        dateFrom = Math.floor(Number($("#from").val()));
+        var content = $("#content").val();
+
+        if (!content) {
+            content = "A holiday from " + dateFrom + " to " + dateTo + " in the month " + month + " due to " + title + ".";
+        }
+
+        if (title) {
+
+            if (isNaN(dateFrom) || isNaN(dateTo)) {
+                alert("Dates should be integers");
+                clearTheForm();
+            } else if (dateTo < dateFrom) {
+                alert("From should come before the to date");
+                clearTheForm();
+            } else {
+                getObjectByMonth(month);
+                saveToCloud(title,content);
+            }
+
+        } else {
+            alert("Fields are compulsary");
+            clearTheForm();
+        }
+
+
 
     });
 
@@ -60,7 +104,7 @@ $(document).ready(function () {
 
     /**************  GLOBAL FUNCTIONS *********/
 
-    function saveToCloud(title, content, attachment) {
+    function saveToCloud(title, content) {
 
         var newNotice = Notice.setAttributes(title, content);
 
@@ -74,6 +118,43 @@ $(document).ready(function () {
                 alert('Failed to create new object, with error code: ' + error.message);
             }
         });
+
+    }
+
+    function getObjectByMonth(month) {
+
+        var getTheObj = new Parse.Query("SchoolHoliday");
+        getTheObj.equalTo("schoolId", currentUser.attributes.schoolId);
+        getTheObj.equalTo("month", month);
+
+        getTheObj.find({
+            success: function (results) {
+                updateHolidayObject(results[0]);
+            },
+            error: function (error) {
+                alert("Error: " + error.code + " " + error.message);
+            }
+        });
+    }
+
+    function updateHolidayObject(obj) {
+
+        for (var i = dateFrom; i <= dateTo; i++) {
+
+            obj.addUnique("dates", i);
+        }
+        console.log(obj);
+
+        obj.save(null, {
+            success: function (obj) {
+               alert("Dates added");
+               clearTheForm();
+            },
+            error: function (obj, error) {
+                alert('Failed to create new object, with error code: ' + error.message);
+            }
+        });
+        console.log("Successful");
 
     }
 

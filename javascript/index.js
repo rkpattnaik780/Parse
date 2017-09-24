@@ -55,7 +55,7 @@ $(document).ready(function () {
         Parse.User.logIn(user, pwd, {
             success: function (user) {
                 //console.log(user.attributes.accountType);
-                checkAndRedirect(user.attributes.accountType);
+                checkAndRedirect(user.attributes.userType);
             },
             error: function (user, error) {
                console.log(error);

@@ -30,8 +30,8 @@ $(document).ready(function () {
         }
         static setAttributes(title, content, attachment) {
             var notice = new Notice();
-            notice.set('schoolCode', currentUser.attributes.schoolID);
-            notice.set('title', title);
+            notice.set('schoolId', currentUser.attributes.schoolId);
+            notice.set('subject', title);
             notice.set("content", content);
             notice.set("attachment", attachment);
 
