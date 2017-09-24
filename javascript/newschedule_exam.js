@@ -197,4 +197,18 @@ $(document).ready(function () {
         $("#timing").val("");
     }
 
+    /************************************* */
+    /*************  LOG OUT ****************/
+    /***************************************/
+
+    $("#logout").click(function () {
+        if (currentUser) {
+            Parse.User.logOut().then(() => {
+                location.href = "../index.html" ;
+            });
+        }
+    });
+
+    /************************************* */
+
 });

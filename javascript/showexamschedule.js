@@ -57,52 +57,73 @@ app.controller('examCtrl', function ($scope) {
         setTheProperArray();
     }
 
-    function setTheProperArray() {
-
-        var t = Number($scope.selectedClass);
-
-        switch (t) {
-            case 0:
-                day = "Sunday";
-                break;
-            case 1:
-                $scope.list = class1rec ;
-                break;
-            case 2:
-                $scope.list = class2rec ;
-                break;
-            case 3:
-                $scope.list = class3rec ;
-                break;
-            case 4:
-                $scope.list = class4rec ;
-                break;
-            case 5:
-                $scope.list = class5rec ;
-                break;
-            case 6:
-                $scope.list = class6rec ;
-                break;
-            case 7:
-                $scope.list = class7rec ;
-                break;
-            case 8:
-                $scope.list = class8rec ;
-                break;
-            case 9:
-                $scope.list = class9rec ;
-                break;
-            case 10:
-                $scope.list = class10rec ;
-                break;
-            case 11:
-                $scope.list = class11rec ;
-                break;
-            case 12:               
-                $scope.list = class12rec ;
-                break;
-        }
+    $scope.filter = function () {
+        setTheProperArray();
     }
+
+
+
+/************************************ */
+
+ function changeTheFilterList(t) {
+
+        $scope.$apply(function () {
+            groupTheRecords(results);
+            console.log($scope.selectedClass);
+            console.log(results);
+            $scope.list = t;
+            console.log($scope.list);
+        });
+
+    }
+
+
+function setTheProperArray() {
+
+    var t = Number($scope.selectedClass);
+
+    switch (t) {
+        case 0:
+            day = "Sunday";
+            break;
+        case 1:
+            $scope.list = class1rec;
+            break;
+        case 2:
+            $scope.list = class2rec;
+            break;
+        case 3:
+            $scope.list = class3rec;
+            break;
+        case 4:
+            $scope.list = class4rec;
+            break;
+        case 5:
+            $scope.list = class5rec;
+            break;
+        case 6:
+            $scope.list = class6rec;
+            break;
+        case 7:
+            $scope.list = class7rec;
+            break;
+        case 8:
+            $scope.list = class8rec;
+            break;
+        case 9:
+            $scope.list = class9rec;
+            break;
+        case 10:
+            $scope.list = class10rec;
+            break;
+        case 11:
+            $scope.list = class11rec;
+            break;
+        case 12:
+            $scope.list = class12rec;
+            break;
+    }
+}
 
 });
 
