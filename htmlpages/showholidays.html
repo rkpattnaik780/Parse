@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HOLIDAYS</title>
+
+    <!-- ****************************************************** 
+             *****************META PROPERTIES  ****************
+             ******************************************************-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL JAVASCRIPT ****************
+             ******************************************************-->
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://npmcdn.com/parse/dist/parse.js"></script>
+    <script src="../javascript/showholidays.js"></script>
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL STYLESHEETS****************
+             ******************************************************-->
+
+    <link href="../stylesheets/showholidays.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-app = "holiday" ng-controller = "myCtrl">
+
+    <section class="container ng-cloak">
+
+        <h1>Holidays</h1>
+
+        <div ng-repeat = "holiday in list">
+            <h3>{{holiday.attributes.month}}</h3>
+            <p> Days - <span ng-repeat = "d in holiday.attributes.dates">{{d}} </span></p>
+        </div>
+
+    </section>
+
+</body>
+
+</html>

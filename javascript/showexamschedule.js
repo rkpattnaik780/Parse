@@ -21,7 +21,6 @@ if (!currentUser) {
 
 /*********** GLOBAL VARIABLES *********/
 
-var results;
 var class1rec = [], class2rec = [], class3rec = [], class4rec = [], class5rec = [], class6rec = [], class7rec = [];
 var class8rec = [], class9rec = [], class10rec = [], class11rec = [], class12rec = [];
 

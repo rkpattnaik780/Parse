@@ -13,6 +13,7 @@ $(document).ready(function () {
      ***************************************/
 
     var user = new Parse.User();
+    var email ;
 
     /************************************* */
     /*******  CHECK IF LOGGED IN  **********/
@@ -36,16 +37,16 @@ $(document).ready(function () {
         constructor() {
             super('Teacher');
         }
-        static setAttributes(schoolCode, name, email, contactNo, address, department, teacherID, qualifications) {
+        static setAttributes(name, contactNo, address, department, teacherID, qualification, photo) {
             var teacher = new Teacher();
-            teacher.set('schoolCode', schoolCode);
+            teacher.set('schoolId', currentUser.attributes.schoolId);
             teacher.set('name', name);
-            teacher.set("email", email);
             teacher.set("teacherID", teacherID);
             teacher.set("contactNo", contactNo);
             teacher.set("address", address);
             teacher.set("department", department);
-            teacher.set("qualifications", qualifications);
+            teacher.set("qualification", qualification);
+            teacher.set("photo", photo);
 
             return teacher;
         }
@@ -55,20 +56,20 @@ $(document).ready(function () {
 
     $("#submit").click(function () {
 
-        var schoolCode = $("#scode").val();
         var name = $("#name").val();
-        var email = $("#email").val();
+        email = $("#email").val();
         var teacherID = Number($("#trid").val());
         var contactNo = Number($("#contact").val());
         var address = $("#address").val();
         var department = $("#dept").val();
-        var qualifications = $("#qftns").val();
+        var qualification = $("#qftns").val();
+        var photo = $("#photo").val();
 
         /************************************************************************* */
         /************ Check if all the input forms are correctly filled !! *********/
         /************************************************************************* */
 
-        if (schoolCode && name && email && address && department) {
+        if (name && email && address && department && qualification && photo) {
 
             if (!validateEmail(email)) {
                 alert("Email ID is not valid!");
@@ -88,20 +89,32 @@ $(document).ready(function () {
             } else if (!/\S/.test(department)) {
                 alert("Deaprtment cant be empty spaces!");
                 clearAllFields();
-            } else if (!/\S/.test(qualifications)) {
-                alert("Qualifications can't be empty");
+            } else if (!/\S/.test(qualification)) {
+                alert("qualification can't be empty");
                 clearAllFields();
             } else {
 
                 /******************  ALL INPUT FIELDS ARE CORRECTLY FILLED *******************/
+                alert("inside the all clear block");
+                var fileUpload = $("#photo")[0];
+                if (fileUpload.files.length > 0) {
+                    var file = fileUpload.files[0];
+                    var filename = "display." + extractTheFileExtension(photo);
 
-                saveToCloud(schoolCode, name, email, contactNo, address, department, teacherID, qualifications);
+                    var parseFile = new Parse.File(filename, file);console.log(parseFile);
+
+                    saveToCloud(name, contactNo, address, department, teacherID, qualification, parseFile);
+                    
+                }
+
+                
 
                 clearAllFields();
             }
 
         } else {
             alert("No empty field allowed!");
+            clearAllFields();
         }
 
     });
@@ -122,7 +135,7 @@ $(document).ready(function () {
     /**************************************************************************** */
 
     function clearAllFields() {
-        $("#scode").val("");
+        $("#photo").val("");
         $("#name").val("");
         $("#email").val("");
         $("#contact").val("");
@@ -145,8 +158,8 @@ $(document).ready(function () {
     /****************  FUNCTION TO SAVE TO CLOUD   ****************************** */
     /**************************************************************************** */
 
-    function saveToCloud(schoolCode, name, email, contactNo, address, department, teacherID, qualifications) {
-        var newTeacher = Teacher.setAttributes(schoolCode, name, email, contactNo, address, department, teacherID, qualifications);
+    function saveToCloud(name, contactNo, address, department, teacherID, qualification, photo) {
+        var newTeacher = Teacher.setAttributes(name, contactNo, address, department, teacherID, qualification, photo);
 
         newTeacher.save(null, {
             success: function (newTeacher) {
@@ -162,18 +175,19 @@ $(document).ready(function () {
             ***************CREATE A NEW USER AT THE TIME OF REGISTRATION****************
             **************************************************************************** */
 
-        user.set("username", schoolCode + teacherID);
+        user.set("username", currentUser.attributes.schoolId + teacherID);
 
         user.set("password", generatePassword(contactNo.toString()));
 
         user.set("email", email);
+      // console.log(email);
 
-        user.set("contactNo",Number($("#contact").val()));
+        user.set("schoolId", currentUser.attributes.schoolId);
 
-        user.set("accountType", "teacher");
+        user.set("userType", "teacher");console.log(user);
 
-        user.signUp(null, {
-            success: function (user) {
+        user.signUp(null, { 
+            success: function (user) {console.log("Inside signup success");
 
                 alert("User added");
 
@@ -183,7 +197,7 @@ $(document).ready(function () {
                 alert("Successfully registered");
                 Parse.User.logOut();
 
-                sendMessage(contactNo, schoolCode, teacherID);
+                sendMessage(contactNo, teacherID);
 
                 clearAllFields();
 
@@ -195,8 +209,8 @@ $(document).ready(function () {
 
     }
 
-    function sendMessage(contactNo, schoolCode, teacherID) {
-        var message = "Your username - " + schoolCode + teacherID + " password - " + generatePassword(contactNo.toString());
+    function sendMessage(contactNo, teacherID) {
+        var message = "Your username - " + currentUser.attributes.schoolId + teacherID + " password - " + generatePassword(contactNo.toString());
         var message = encodeURI(message);
         var temp = "https://control.msg91.com/api/sendhttp.php?" +
             "authkey=" + "174873AZUblpkT3Pm59bc04e1" +
@@ -206,6 +220,11 @@ $(document).ready(function () {
             alert("Data: " + data + "\nStatus: " + status);
         });
 
+    }
+
+    function extractTheFileExtension(str) {
+        str = str.split(".");
+        return str[str.length - 1];
     }
 
     /************************************* */
