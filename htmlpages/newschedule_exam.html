@@ -15,9 +15,10 @@
              ***************** EXTERNAL STYLESHEETS****************
              ******************************************************-->
 
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="../stylesheets/newschedule_exam.css" rel="stylesheet" type="text/css">
     <link href="../stylesheets/panel.css" rel="stylesheet" type="text/css">
-    <link href="../stylesheets/dashboard.css" rel="stylesheet" type="text/css">
+    <link href="../stylesheets/navbar.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
@@ -25,87 +26,91 @@
 <body>
 
 
-    <!-- Nav Bar -->
-   
-    <nav>
-            <div class="logo">
-                <a href="#">
-                    <span><img src = "../images/recess_temp_logo.png" width = "200px" height = "100px"></span>
+  <!--My Nav-->
+  <nav>
+        <div class="logo">
+            <a href="#">
+                <span><img src = "../images/recess_temp_logo.png" width = "200px" height = "100px"></span>
+            </a>
+        </div>
+        <ul class="main-nav">
+            <li>
+                <a href="dashboard.html">
+                    <span class="fa fa-home"></span>
+                    Home
                 </a>
-            </div>
-            <ul class="main-nav">
-                <li>
-                    <a href="dashboard.html" id = "homeLink">
-                        <span class="fa fa-home"></span>
-                        Home
-                    </a>
-                </li>
-                <li class = "superLink"  data-toggle="collapse" data-target="#reg" class="collapsed">
-                    <a href="#"id = "regLink"><span class="fa fa-id-card"></span>
-                            Registration<span class="arrow"></span></a>
-                    
-                    <ul class="sub-list collapse" id="reg">
-                        <li><a href = "studentreg.html" id = "regLink1"><span class="fa fa-plus"></span>Student Registration</a></li>
-                        <li><a href = "teacher_reg.html" id = "regLink2"><span class="fa fa-plus"></span>Teacher Registration</a></li>
-                    </ul>
-                </li>  
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#reg"><span class="fa fa-id-card"></span>
+                        Registration<span class="arrow"></span></a>
                 
-        
-                <li class = "superLink"  data-toggle="collapse" data-target="#exam" class="collapsed">
-                    <a href="#">
-                        <span class="fa fa-wpforms"></span>
-                        Exam Schedule
-                    </a>
-                    <ul class="sub-list collapse" id="exam">
-                        <li><a href = "newschedule_exam.html"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
-                        <li><a href = "showexamschedule.html"><span class="fa fa-plus"></span>View Exam Schedule</a></li>
-                    </ul>
-                </li>
-                
-                <li class = "superLink"  data-toggle="collapse" data-target="#timeTableList" class="collapsed">
-                    <a href="#">
-                        <span class="fa fa-wpforms"></span>
-                        Time Tables
-                    </a>
-                    <ul class="sub-list collapse" id="timeTableList">
-                        <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>Student Timetable</a></li>
-                        <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>Teacher Timetable</a></li>
-                    </ul>
-                </li>
-                <li class = "superLink"  data-toggle="collapse" data-target="#eventList" class="collapsed">
-                    <a href="#">
-                        <span class="fa fa-wpforms"></span>
-                        Events
-                    </a>
-                    <ul class="sub-list collapse" id="eventList">
-                        <li><a href = "event.html"><span class="fa fa-plus"></span>New Event</a></li>
-                        <li><a href = "#"><span class="fa fa-plus"></span>Show Events</a></li>
-                    </ul>
-                </li>
-        
-                <li class = "superLink"  data-toggle="collapse" data-target="#holidayList" class="collapsed">
-                    <a href="#">
-                        <span class="fa fa-wpforms"></span>
-                        Holidays
-                    </a>
-                    <ul class="sub-list collapse" id="holidayList">
-                        <li><a href = "holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
-                        <li><a href = "#"><span class="fa fa-plus"></span>Show Holidays</a></li>
-                    </ul>
-                </li>
-        
-                <li class = "superLink"  data-toggle="collapse" data-target="#noticeList" class="collapsed">
-                    <a href="#">
-                        <span class="fa fa-wpforms"></span>
-                        Notices
-                    </a>
-                    <ul class="sub-list collapse" id="noticeList">
-                        <li><a href = "notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
-                        <li><a href = "#"><span class="fa fa-plus"></span>Show Notices</a></li>
-                    </ul>
-                </li>
-            </ul>
-            </nav>
+                <ul class="collapse" id="reg">
+                    <li><a href = "studentreg.html"><span class="fa fa-plus"></span>New Student Registration</a></li>
+                    <li><a href = "showstudents.html"><span class="fa fa-eye"></span>View All Students</a></li>
+                    <li><a href = "teacher_reg.html"><span class="fa fa-plus"></span>New Teacher Registration</a></li>
+                    <li><a href = "showteachers.html"><span class="fa fa-eye"></span>View All Teachers</a></li>
+                </ul>
+            </li>  
+            
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#exam"  class = "active">
+                    <span class="fa fa-wpforms"></span>
+                    Exam Schedule
+                </a>
+                <ul class="collapse" id="exam">
+                    <li><a href = "newschedule_exam.html" class = "active"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
+                    <li><a href = "showexamschedule.html"><span class="fa fa-eye"></span>View Exam Schedule</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#timeTableList" >
+                    <span class="fa fa-table"></span>
+                    Time Tables
+                </a>
+                <ul class="collapse" id="timeTableList">
+                    <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>New Student Timetable</a></li>
+                    <li><a href = "showstudenttimetable.html"><span class="fa fa-eye"></span>View Student Timetable</a></li>
+                    <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>New Teacher Timetable</a></li>
+                    <li><a href = "showteachertimetable.html"><span class="fa fa-eye"></span>View Teacher Timetable</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#eventList">
+                    <span class="fa fa-newspaper-o"></span>
+                    Events
+                </a>
+                <ul class="collapse" id="eventList">
+                    <li><a href = "event.html"><span class="fa fa-plus"></span>New Event</a></li>
+                    <li><a href = "showevents.html"><span class="fa fa-eye"></span>View Events</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#holidayList">
+                    <span class="fa fa-calendar"></span>
+                    Holidays
+                </a>
+                <ul class="collapse" id="holidayList">
+                    <li><a href = "holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
+                    <li><a href = "showholidays.html"><span class="fa fa-eye"></span>View Holidays</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#noticeList">
+                    <span class="fa fa-bell"></span>
+                    Notices
+                </a>
+                <ul class="collapse" id="noticeList">
+                    <li><a href = "notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
+                    <li><a href = "shownotices.html"><span class="fa fa-eye"></span>View Notices</a></li>
+                </ul>
+            </li>
+    
+        </ul>
+        </nav>
             <div class="dashboard">
                 <div class="container clearfix">
                     <span id = "dashTitle">Admin Panel</span>
@@ -115,6 +120,8 @@
                     </div>
                 </div>
             </div>
+
+
     
 
     <!-- My Edit -->
@@ -244,7 +251,6 @@
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="https://npmcdn.com/parse/dist/parse.js"></script>
     <script src="../javascript/newschedule_exam.js"></script>
-    <script src = "../javascript/navbar.js"></script>
 
 </body>
 

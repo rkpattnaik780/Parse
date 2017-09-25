@@ -8,7 +8,8 @@
              ***************** EXTERNAL STYLESHEETS****************
              ******************************************************-->
 
-    <link href="../stylesheets/dashboard.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="../stylesheets/navbar.css" rel="stylesheet" type="text/css">
     <link href="../stylesheets/panel.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -17,8 +18,8 @@
 <body>
 
 
-  <!--Nav Bar-->
-  
+
+  <!--My Nav-->
   <nav>
         <div class="logo">
             <a href="#">
@@ -27,88 +28,93 @@
         </div>
         <ul class="main-nav">
             <li>
-                <a href="dashboard.html" id = "homeLink">
+                <a href="dashboard.html">
                     <span class="fa fa-home"></span>
                     Home
                 </a>
             </li>
-            <li class = "superLink"  data-toggle="collapse" data-target="#reg" class="collapsed">
-                <a href="#"id = "regLink"><span class="fa fa-id-card"></span>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#reg" class = "active"><span class="fa fa-id-card"></span>
                         Registration<span class="arrow"></span></a>
                 
-                <ul class="sub-list collapse" id="reg">
-                    <li><a href = "studentreg.html" id = "regLink1"><span class="fa fa-plus"></span>Student Registration</a></li>
-                    <li><a href = "teacher_reg.html" id = "regLink2"><span class="fa fa-plus"></span>Teacher Registration</a></li>
+                <ul class="collapse" id="reg">
+                    <li><a href = "studentreg.html" class = "active"><span class="fa fa-plus"></span>New Student Registration</a></li>
+                    <li><a href = "showstudents.html"><span class="fa fa-eye"></span>View All Students</a></li>
+                    <li><a href = "teacher_reg.html"><span class="fa fa-plus"></span>New Teacher Registration</a></li>
+                    <li><a href = "showteachers.html"><span class="fa fa-eye"></span>View All Teachers</a></li>
                 </ul>
             </li>  
             
     
-            <li class = "superLink"  data-toggle="collapse" data-target="#exam" class="collapsed">
-                <a href="#">
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#exam" >
                     <span class="fa fa-wpforms"></span>
                     Exam Schedule
                 </a>
-                <ul class="sub-list collapse" id="exam">
+                <ul class="collapse" id="exam">
                     <li><a href = "newschedule_exam.html"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
-                    <li><a href = "showexamschedule.html"><span class="fa fa-plus"></span>View Exam Schedule</a></li>
+                    <li><a href = "showexamschedule.html"><span class="fa fa-eye"></span>View Exam Schedule</a></li>
                 </ul>
             </li>
             
-            <li class = "superLink"  data-toggle="collapse" data-target="#timeTableList" class="collapsed">
-                <a href="#">
-                    <span class="fa fa-wpforms"></span>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#timeTableList" >
+                    <span class="fa fa-table"></span>
                     Time Tables
                 </a>
-                <ul class="sub-list collapse" id="timeTableList">
-                    <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>Student Timetable</a></li>
-                    <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>Teacher Timetable</a></li>
+                <ul class="collapse" id="timeTableList">
+                    <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>New Student Timetable</a></li>
+                    <li><a href = "showstudenttimetable.html"><span class="fa fa-eye"></span>View Student Timetable</a></li>
+                    <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>New Teacher Timetable</a></li>
+                    <li><a href = "showteachertimetable.html"><span class="fa fa-eye"></span>View Teacher Timetable</a></li>
                 </ul>
             </li>
-            <li class = "superLink"  data-toggle="collapse" data-target="#eventList" class="collapsed">
-                <a href="#">
-                    <span class="fa fa-wpforms"></span>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#eventList">
+                    <span class="fa fa-newspaper-o"></span>
                     Events
                 </a>
-                <ul class="sub-list collapse" id="eventList">
+                <ul class="collapse" id="eventList">
                     <li><a href = "event.html"><span class="fa fa-plus"></span>New Event</a></li>
-                    <li><a href = "#"><span class="fa fa-plus"></span>Show Events</a></li>
+                    <li><a href = "showevents.html"><span class="fa fa-eye"></span>View Events</a></li>
                 </ul>
             </li>
     
-            <li class = "superLink"  data-toggle="collapse" data-target="#holidayList" class="collapsed">
-                <a href="#">
-                    <span class="fa fa-wpforms"></span>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#holidayList">
+                    <span class="fa fa-calendar"></span>
                     Holidays
                 </a>
-                <ul class="sub-list collapse" id="holidayList">
+                <ul class="collapse" id="holidayList">
                     <li><a href = "holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
-                    <li><a href = "#"><span class="fa fa-plus"></span>Show Holidays</a></li>
+                    <li><a href = "showholidays.html"><span class="fa fa-eye"></span>View Holidays</a></li>
                 </ul>
             </li>
     
-            <li class = "superLink"  data-toggle="collapse" data-target="#noticeList" class="collapsed">
-                <a href="#">
-                    <span class="fa fa-wpforms"></span>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#noticeList">
+                    <span class="fa fa-bell"></span>
                     Notices
                 </a>
-                <ul class="sub-list collapse" id="noticeList">
+                <ul class="collapse" id="noticeList">
                     <li><a href = "notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
-                    <li><a href = "#"><span class="fa fa-plus"></span>Show Notices</a></li>
+                    <li><a href = "shownotices.html"><span class="fa fa-eye"></span>View Notices</a></li>
                 </ul>
             </li>
     
         </ul>
         </nav>
-        <div class="dashboard">
-            <div class="container clearfix">
-                <span id = "dashTitle">Admin Panel</span>
-                <span style = "float: right"><i class = "fa fa-sign-out"></i> <a href = "#" id = "logout"  >LogOut</a></span>
-                <div class="main-section">
-                    
+            <div class="dashboard">
+                <div class="container clearfix">
+                    <span id = "dashTitle">Admin Panel</span>
+                    <span style = "float: right"><i class = "fa fa-sign-out"></i> <a href = "#" id = "logout"  >LogOut</a></span>
+                    <div class="main-section">
+                        
+                    </div>
                 </div>
             </div>
-        </div>
 
+    
 
     <!-- My Edit -->
     <div class = "container">
@@ -116,14 +122,17 @@
             <div id = "regform" class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class = "panel panel-info" style = "margin-top: 6%;">
                     <div class = "panel-heading">
-                        <div class = "panel-title">Student Registration</div>
+                        <div class = "panel-title">
+                            Student Registration
+                            <button title = "Clear Form" style = "float: right" class="btn" id="clear"><i class = "fa fa-refresh"></i></button>
+                        </div>
                     </div>
                     <div class = "panel-body">
                         
                             <div class = "row">
                                 <div class = "form-group  col-md-6 col-lg-6 col-sm-12 col-xs-12">
                                     <div class = "input-group">
-                                        <span class = "input-group-addon"><i class = "fa fa-university" aria-hidden="true"></i></span>
+                                        <span class = "input-group-addon">Upload Photo</span>
                                         <input id="photo" class = "form-control" type = "file">
                                     </div>
                                 </div>
@@ -189,15 +198,14 @@
                                 </div>
                             </div>
                             <div class = "row">
-                            <div class = "form-group col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <div class = "form-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                     <div class = "input-group">
-                                        <span class = "input-group-addon"><i class = "fa fa-phone" aria-hidden="true"></i></span>
-                                        <input id="address" class = "form-control" type = "text" placeholder = "Address">
+                                        <span class = "input-group-addon"><i class = "fa fa-address-book" aria-hidden="true"></i></span>
+                                        <textarea id="address" class = "form-control" rows = "2" type = "text" placeholder = "Address"></textarea>
                                     </div>
-                            </div>
+                                </div>
                             </div>
                             <button id = "submit" class = "btn btn-default btn-block">SUBMIT</button>
-                        
                     </div>
                 </div>
             </div>
@@ -213,7 +221,6 @@
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="https://npmcdn.com/parse/dist/parse.js"></script>
     <script src = "../javascript/student.js"></script>
-    <script src = "../javascript/navbar.js"></script>
 </body>
 
 </html>

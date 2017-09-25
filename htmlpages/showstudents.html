@@ -24,59 +24,173 @@
     <!-- ****************************************************** 
              ***************** EXTERNAL STYLESHEETS****************
              ******************************************************-->
-
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="../stylesheets/navbar.css" rel="stylesheet" type="text/css">
+    <link href="../stylesheets/panel.css" rel="stylesheet" type="text/css">
     <link href="../stylesheets/showstudents.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
-<body ng-app="students" ng-controller="myCtrl">
+<body ng-app="students" ng-controller="myCtrl" class="ng-cloak">
 
-    <section class="container ng-cloak">
-
-        <h1>List of Students</h1>
-
-        <select ng-model="selectedClass" class="form-control" ng-change="filter()">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
-        </select>
-
-        <div ng-repeat = "student in list">
-            <div class = "row">
-            <div class = "col-sm-2">
-            <img src = {{student.attributes.photo._url}} alt = {{student.attributes.name}} width = "100px" height = "100px" class = "shiftleft">
-            </div>
-            <div class = "col-sm-10">
-            <h3> Name - {{student.attributes.name}}</h3>
-            <h4>Class - {{student.attributes.class}} {{student.attributes.section}}</h4>
-            <p>Student ID - {{student.attributes.studentId}}</p>
-            <p> Phone No. - {{student.attributes.contactNo}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Address - {{student.attributes.address}}</p>
-            </div>
-            </div>
-            
+<!--My Nav-->
+<nav>
+        <div class="logo">
+            <a href="#">
+                <span><img src = "../images/recess_temp_logo.png" width = "200px" height = "100px"></span>
+            </a>
         </div>
+        <ul class="main-nav">
+            <li>
+                <a href="dashboard.html">
+                    <span class="fa fa-home"></span>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#reg" class = "active"><span class="fa fa-id-card"></span>
+                        Registration<span class="arrow"></span></a>
+                
+                <ul class="collapse" id="reg">
+                    <li><a href = "studentreg.html"><span class="fa fa-plus"></span>New Student Registration</a></li>
+                    <li><a href = "showstudents.html" class = "active"><span class="fa fa-eye"></span>View All Students</a></li>
+                    <li><a href = "teacher_reg.html"><span class="fa fa-plus"></span>New Teacher Registration</a></li>
+                    <li><a href = "showteachers.html"><span class="fa fa-eye"></span>View All Teachers</a></li>
+                </ul>
+            </li>  
+            
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#exam" >
+                    <span class="fa fa-wpforms"></span>
+                    Exam Schedule
+                </a>
+                <ul class="collapse" id="exam">
+                    <li><a href = "newschedule_exam.html"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
+                    <li><a href = "showexamschedule.html"><span class="fa fa-eye"></span>View Exam Schedule</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#timeTableList" >
+                    <span class="fa fa-table"></span>
+                    Time Tables
+                </a>
+                <ul class="collapse" id="timeTableList">
+                    <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>New Student Timetable</a></li>
+                    <li><a href = "showstudenttimetable.html"><span class="fa fa-eye"></span>View Student Timetable</a></li>
+                    <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>New Teacher Timetable</a></li>
+                    <li><a href = "showteachertimetable.html"><span class="fa fa-eye"></span>View Teacher Timetable</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#eventList">
+                    <span class="fa fa-newspaper-o"></span>
+                    Events
+                </a>
+                <ul class="collapse" id="eventList">
+                    <li><a href = "event.html"><span class="fa fa-plus"></span>New Event</a></li>
+                    <li><a href = "showevents.html"><span class="fa fa-eye"></span>View Events</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#holidayList">
+                    <span class="fa fa-calendar"></span>
+                    Holidays
+                </a>
+                <ul class="collapse" id="holidayList">
+                    <li><a href = "holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
+                    <li><a href = "showholidays.html"><span class="fa fa-eye"></span>View Holidays</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#noticeList">
+                    <span class="fa fa-bell"></span>
+                    Notices
+                </a>
+                <ul class="collapse" id="noticeList">
+                    <li><a href = "notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
+                    <li><a href = "shownotices.html"><span class="fa fa-eye"></span>View Notices</a></li>
+                </ul>
+            </li>
+    
+        </ul>
+        </nav>
+            <div class="dashboard">
+                <div class="container clearfix">
+                    <span id = "dashTitle">Admin Panel</span>
+                    <span style = "float: right"><i class = "fa fa-sign-out"></i> <a  ng-click = "logOut()" href = "#" id = "logout"  >LogOut</a></span>
+                    <div class="main-section">
+                        
+                    </div>
+                </div>
+            </div>
 
-      <!--  <div ng-repeat = "student in list">
-            <h4>Name - {{student.attributes.name}}</h4>
-            <h4>Class - {{student.attributes.class}} {{student.attributes.section}}</h4>
-            <p>Student ID - {{student.attributes.studentId}}</p>
-            <p> Phone No. - {{student.attributes.contactNo}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Address - {{student.attributes.address}}</p>
-        </div>  -->
+
+<!-- My Edit -->
+<div class = "container">
+        <div class = "row centered-form text-center">
+            <div id = "regform" class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class = "panel panel-info" style = "margin-top: 6%;">
+                    <div class = "panel-heading">
+                        <div class = "panel-title">Student Details</div>
+                    </div>
+                    <div class = "panel-body">
+
+                        <div class = "row">
+                            <div class = "form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class = "input-group">
+                                    <span class = "input-group-addon">Students of Class: </span>
+                                    <select ng-model="selectedClass" class="form-control" ng-change="filter()">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-repeat = "student in list">
+                                <div class = "panel panel-primary contentPanel">
+                                    
+                                    <div class = "panel-body">
+                                        
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img src = {{student.attributes.photo._url}} alt = {{student.attributes.name}} width = "100px" height = "100px">
+                                            </div>
+                                            <div class="media-body" style = "text-align: left; padding: 5px;">
+                                                <h4><b>Name :</b> {{student.attributes.name}}</h4>
+                                                <h4><b>Class :</b> {{student.attributes.class}} {{student.attributes.section}}</h4>
+                                                <h4><b>Phone No. :</b> {{student.attributes.contactNo}}</h4>
+                                                <p style = "font-size: 18px; width: 200px; overflow-wrap: word-break;"><b>Address :</b> {{student.attributes.address}}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
 
 
-    </section>
 
 </body>
 

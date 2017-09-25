@@ -1,19 +1,59 @@
-#submit{
+#submit {
     margin : auto ;
-    box-shadow: 2px 2px 7px #888;
+    box-shadow: 2px 2px 4px #888;
     background: #7DBDE0 !important;
     color: 	#EEEFEA !important;
     border: none;
     padding: 10px;
     font-size: 15px !important;
-    max-width: 100px;
+    max-width: 150px;
+    border-radius: 0px !important;
+}
+
+#clear {
+    background-color: transparent;
+    color: 	#d34836 !important;
 }
 
 thead th{
     text-align: center;
-    background: #c0deed;
+    background: #428bca;
 }
 
+.contentPanel {
+    margin: 2% 4% 2% 4%  !important;
+    box-shadow: 1px 1px 4px #888 !important;
+    border-radius: 100px !important;
+    border: none !important;
+    min-width: 0px !important;
+}
+
+.contentPanel .panel-title{
+    color: #fff !important;
+}
+
+.contentPara {
+    margin: auto;
+    width: 500px;
+    padding: 10px;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
+
+.timeTableTitle {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 1px 1px 1px #888;
+}
+
+.timeTableContent {
+    margin: auto;
+    width: 300px;
+    padding: 10px;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
 
 
 .specialForm{
@@ -54,6 +94,7 @@ thead th{
 
 .panel-heading{
     color: 	#6EA3BE !important;
+    text-shadow: 1px 1px 2px #666;
 }
 
 .panel-title{
