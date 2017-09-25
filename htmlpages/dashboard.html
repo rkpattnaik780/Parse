@@ -4,14 +4,22 @@
 <head>
     <title>Admin</title>
 
-       <!-- ****************************************************** 
+    <!-- ****************************************************** 
              *****************META PROPERTIES  ****************
              ******************************************************-->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        <!-- ****************************************************** 
+    <!-- ****************************************************** 
+             ***************** EXTERNAL JAVASCRIPT ****************
+             ******************************************************-->
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://npmcdn.com/parse/dist/parse.js"></script>
+
+    <!-- ****************************************************** 
              ***************** EXTERNAL STYLESHEETS****************
              ******************************************************-->
 
@@ -19,117 +27,147 @@
     <link href="../stylesheets/dashboard.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+
 </head>
 
 <body>
 
-   <!--Nav Bar-->
-   
-  <nav>
-	<div class="logo">
-		<a href="#">
+    <!--Nav Bar-->
+
+    <nav>
+        <div class="logo">
+            <a href="#">
 			<span><img src = "../images/recess_temp_logo.png" width = "200px" height = "100px"></span>
 		</a>
-    </div>
-	<ul class="main-nav">
+        </div>
+        <ul class="main-nav">
 
-        <li>
-            <a href="dashboard.html" id = "homeLink">
+            <li>
+                <a href="dashboard.html" id="homeLink">
                 <span class="fa fa-home"></span>
                 Home
             </a>
-        </li>
+            </li>
 
-        <li class = "superLink"  data-toggle="collapse" data-target="#reg" class="collapsed">
-            <a href="#"id = "regLink"><span class="fa fa-id-card"></span>
+            <li class="superLink" data-toggle="collapse" data-target="#reg" class="collapsed">
+                <a href="#" id="regLink"><span class="fa fa-id-card"></span>
                     Registration<span class="arrow"></span></a>
-            
-            <ul class="sub-list collapse" id="reg">
-                <li><a href = "studentreg.html" id = "regLink1"><span class="fa fa-plus"></span>Student Registration</a></li>
-                <li><a href = "teacher_reg.html" id = "regLink2"><span class="fa fa-plus"></span>Teacher Registration</a></li>
-            </ul>
-        </li>  
-        
 
-		<li class = "superLink"  data-toggle="collapse" data-target="#exam" class="collapsed">
-			<a href="#">
+                <ul class="sub-list collapse" id="reg">
+                    <li><a href="studentreg.html" id="regLink1"><span class="fa fa-plus"></span>Student Registration</a></li>
+                    <li><a href="teacher_reg.html" id="regLink2"><span class="fa fa-plus"></span>Teacher Registration</a></li>
+                </ul>
+            </li>
+
+
+            <li class="superLink" data-toggle="collapse" data-target="#exam" class="collapsed">
+                <a href="#">
 				<span class="fa fa-wpforms"></span>
 				Exam Schedule
             </a>
-            <ul class="sub-list collapse" id="exam">
-                <li><a href = "newschedule_exam.html"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
-                <li><a href = "showexamschedule.html"><span class="fa fa-plus"></span>View Exam Schedule</a></li>
-            </ul>
-        </li>
-        
-		<li class = "superLink"  data-toggle="collapse" data-target="#timeTableList" class="collapsed">
-            <a href="#">
+                <ul class="sub-list collapse" id="exam">
+                    <li><a href="newschedule_exam.html"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
+                    <li><a href="showexamschedule.html"><span class="fa fa-plus"></span>View Exam Schedule</a></li>
+                </ul>
+            </li>
+
+            <li class="superLink" data-toggle="collapse" data-target="#timeTableList" class="collapsed">
+                <a href="#">
                 <span class="fa fa-wpforms"></span>
                 Time Tables
             </a>
-            <ul class="sub-list collapse" id="timeTableList">
-                <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>Student Timetable</a></li>
-                <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>Teacher Timetable</a></li>
-            </ul>
-        </li>
+                <ul class="sub-list collapse" id="timeTableList">
+                    <li><a href="student_timetable.html"><span class="fa fa-plus"></span>Student Timetable</a></li>
+                    <li><a href="teachertimetable.html"><span class="fa fa-plus"></span>Teacher Timetable</a></li>
+                </ul>
+            </li>
 
-        <li class = "superLink"  data-toggle="collapse" data-target="#eventList" class="collapsed">
-            <a href="#">
+            <li class="superLink" data-toggle="collapse" data-target="#eventList" class="collapsed">
+                <a href="#">
                 <span class="fa fa-wpforms"></span>
                 Events
             </a>
-            <ul class="sub-list collapse" id="eventList">
-                <li><a href = "event.html"><span class="fa fa-plus"></span>New Event</a></li>
-                <li><a href = "#"><span class="fa fa-plus"></span>Show Events</a></li>
-            </ul>
-        </li>
+                <ul class="sub-list collapse" id="eventList">
+                    <li><a href="event.html"><span class="fa fa-plus"></span>New Event</a></li>
+                    <li><a href="#"><span class="fa fa-plus"></span>Show Events</a></li>
+                </ul>
+            </li>
 
-        <li class = "superLink"  data-toggle="collapse" data-target="#holidayList" class="collapsed">
-            <a href="#">
+            <li class="superLink" data-toggle="collapse" data-target="#holidayList" class="collapsed">
+                <a href="#">
                 <span class="fa fa-wpforms"></span>
                 Holidays
             </a>
-            <ul class="sub-list collapse" id="holidayList">
-                <li><a href = "holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
-                <li><a href = "#"><span class="fa fa-plus"></span>Show Holidays</a></li>
-            </ul>
-        </li>
+                <ul class="sub-list collapse" id="holidayList">
+                    <li><a href="holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
+                    <li><a href="#"><span class="fa fa-plus"></span>Show Holidays</a></li>
+                </ul>
+            </li>
 
-        <li class = "superLink"  data-toggle="collapse" data-target="#noticeList" class="collapsed">
-            <a href="#">
+            <li class="superLink" data-toggle="collapse" data-target="#noticeList" class="collapsed">
+                <a href="#">
                 <span class="fa fa-wpforms"></span>
                 Notices
             </a>
-            <ul class="sub-list collapse" id="noticeList">
-                <li><a href = "notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
-                <li><a href = "#"><span class="fa fa-plus"></span>Show Notices</a></li>
-            </ul>
-        </li>
+                <ul class="sub-list collapse" id="noticeList">
+                    <li><a href="notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
+                    <li><a href="#"><span class="fa fa-plus"></span>Show Notices</a></li>
+                </ul>
+            </li>
 
-	</ul>
+        </ul>
     </nav>
     <div class="dashboard">
         <div class="container clearfix">
-            <span id = "dashTitle">Admin Panel</span>
-            <span style = "float: right"><i class = "fa fa-sign-out"></i> <a href = "#" id = "logout"  >LogOut</a></span>
+            <span id="dashTitle">Admin Panel</span>
+            <span style="float: right"><i class = "fa fa-sign-out"></i> <a href = "#" id = "logout"  >LogOut</a></span>
             <div class="main-section">
-                
+
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class = "row">
+        <div class = "panel panel-info">
+        <div class = "col-sm-6">
+            <img id = "photo" width = "500px" height = "500px" alt = "School">
+        </div>
+        <div class = "col-sm-6">
+             <p id = "name"></p>
+             <br>
+             <p id = "address"></p>
+             <p id = "contact"></p>
+        </div>
+        </div>
+    </div> -->
+
+    <!-- My Edit -->
+    <div class="container">
+        <div class="row centered-form text-center">
+            <div id="regform" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="panel panel-info" style="margin-top: 6%;">
+
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img id="photo" width="300px" height="300px" alt="School">
+                            </div>
+                            <div class="col-sm-6">
+                                <h3 id="name"></h3>
+                                <br>
+                                <h4 id="address"></h4>
+                                <h4 id="contact"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-
-
-        <!-- ****************************************************** 
-             ***************** EXTERNAL JAVASCRIPT ****************
-             ******************************************************-->
-
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="https://npmcdn.com/parse/dist/parse.js"></script>
     <script src="../javascript/dashboard.js"></script>
-    <script src = "../javascript/navbar.js"></script>
+    <script src="../javascript/navbar.js"></script>
 
 </body>
 

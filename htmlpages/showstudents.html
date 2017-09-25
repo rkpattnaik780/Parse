@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>STUDENTS</title>
+
+    <!-- ****************************************************** 
+             *****************META PROPERTIES  ****************
+             ******************************************************-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL JAVASCRIPT ****************
+             ******************************************************-->
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://npmcdn.com/parse/dist/parse.js"></script>
+    <script src="../javascript/showstudents.js"></script>
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL STYLESHEETS****************
+             ******************************************************-->
+
+    <link href="../stylesheets/showstudents.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-app="students" ng-controller="myCtrl">
+
+    <section class="container ng-cloak">
+
+        <h1>List of Students</h1>
+
+        <select ng-model="selectedClass" class="form-control" ng-change="filter()">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+        </select>
+
+        <div ng-repeat = "student in list">
+            <div class = "row">
+            <div class = "col-sm-2">
+            <img src = {{student.attributes.photo._url}} alt = {{student.attributes.name}} width = "100px" height = "100px" class = "shiftleft">
+            </div>
+            <div class = "col-sm-10">
+            <h3> Name - {{student.attributes.name}}</h3>
+            <h4>Class - {{student.attributes.class}} {{student.attributes.section}}</h4>
+            <p>Student ID - {{student.attributes.studentId}}</p>
+            <p> Phone No. - {{student.attributes.contactNo}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Address - {{student.attributes.address}}</p>
+            </div>
+            </div>
+            
+        </div>
+
+      <!--  <div ng-repeat = "student in list">
+            <h4>Name - {{student.attributes.name}}</h4>
+            <h4>Class - {{student.attributes.class}} {{student.attributes.section}}</h4>
+            <p>Student ID - {{student.attributes.studentId}}</p>
+            <p> Phone No. - {{student.attributes.contactNo}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Address - {{student.attributes.address}}</p>
+        </div>  -->
+
+
+    </section>
+
+</body>
+
+</html>

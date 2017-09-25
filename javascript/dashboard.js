@@ -27,14 +27,39 @@ $(document).ready(function () {
 
     /************************************* */
 
+    /************ GET THE SCHOOL INFO  *****/
+
+    var getTheData = new Parse.Query("SchoolInfo");
+    getTheData.equalTo("schoolId", currentUser.attributes.schoolId);
+
+    getTheData.find({
+        success: function (results) {
+
+            console.log(results[0]);
+
+            $("#photo").attr("src",results[0].attributes.photo._url);
+            $("#name").html(results[0].attributes.schoolName);
+            $("#address").html(results[0].attributes.address);
+            $("#contact").html("Contact No. - " + results[0].attributes.contactNo);
+
+        },
+        error: function (error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+
+    /************************************* */
+
     /************************************* */
     /*************  LOG OUT ****************/
     /***************************************/
 
+
+
     $("#logout").click(function () {
         if (currentUser) {
             Parse.User.logOut().then(() => {
-                location.href = "../index.html" ;
+                location.href = "../index.html";
             });
         }
     });
@@ -44,11 +69,11 @@ $(document).ready(function () {
     /*
     
         My Edit for active class
-
+ 
     */
 
     $("#homeLink").addClass("active");
 
 
-    
-    });
+
+});

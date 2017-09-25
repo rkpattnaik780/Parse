@@ -13,13 +13,14 @@ $(document).ready(function () {
      ***************************************/
 
     var user = new Parse.User();
-    var email ;
+    var email;
 
     /************************************* */
     /*******  CHECK IF LOGGED IN  **********/
     /***************************************/
 
     var currentUser = Parse.User.current();
+    console.log(currentUser);
     if (!currentUser) {
         alert("You need to login!");
         location.href = "../index.html";
@@ -27,6 +28,10 @@ $(document).ready(function () {
 
     /************************************* */
 
+    /*** GET THE CURRENT SESSION ***********/
+
+    var currentSession = currentUser.attributes.sessionToken;
+    console.log(currentSession);
     /* ************************************ */
 
     /****************************************
@@ -101,13 +106,13 @@ $(document).ready(function () {
                     var file = fileUpload.files[0];
                     var filename = "display." + extractTheFileExtension(photo);
 
-                    var parseFile = new Parse.File(filename, file);console.log(parseFile);
+                    var parseFile = new Parse.File(filename, file); console.log(parseFile);
 
                     saveToCloud(name, contactNo, address, department, teacherID, qualification, parseFile);
-                    
+
                 }
 
-                
+
 
                 clearAllFields();
             }
@@ -180,26 +185,31 @@ $(document).ready(function () {
         user.set("password", generatePassword(contactNo.toString()));
 
         user.set("email", email);
-      // console.log(email);
+        // console.log(email);
 
         user.set("schoolId", currentUser.attributes.schoolId);
 
-        user.set("userType", "teacher");console.log(user);
+        user.set("userType", "teacher"); console.log(user);
 
-        user.signUp(null, { 
-            success: function (user) {console.log("Inside signup success");
+        user.signUp(null, {
+            success: function (user) {
+                console.log("Inside signup success");
 
                 alert("User added");
 
                 /*********************** LOGOUT   ************************ */
 
                 var currentUser = Parse.User.current();
-                alert("Successfully registered");
-                Parse.User.logOut();
-
                 sendMessage(contactNo, teacherID);
-
-                clearAllFields();
+                alert("Successfully registered");
+                Parse.User.logOut().then(function () {
+                    Parse.User.become(currentSession).then(function (user) {
+                        location.reload();
+                        clearAllFields();
+                    }, function (error) {
+                        // The token could not be validated.
+                    });
+                });
 
             },
             error: function (user, error) {

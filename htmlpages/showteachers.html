@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TEACHERS</title>
+
+    <!-- ****************************************************** 
+             *****************META PROPERTIES  ****************
+             ******************************************************-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL JAVASCRIPT ****************
+             ******************************************************-->
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://npmcdn.com/parse/dist/parse.js"></script>
+    <script src="../javascript/showteachers.js"></script>
+
+    <!-- ****************************************************** 
+             ***************** EXTERNAL STYLESHEETS****************
+             ******************************************************-->
+
+    <link href="../stylesheets/showteachers.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-app="teachers" ng-controller="myCtrl">
+
+    <section class="container ng-cloak">
+
+        <h1>List of Teachers</h1>
+
+        <div ng-repeat = "teacher in list">
+            <div class = "row">
+            <div class = "col-sm-2">
+            <img src = {{teacher.attributes.photo._url}} alt = {{teacher.attributes.name}} width = "100px" height = "100px">
+            </div>
+            <div class = "col-sm-10">
+            <h3> Name - {{teacher.attributes.name}}</h3>
+            <p> Department - {{teacher.attributes.department}}</p>
+            <p> Phone No. - {{teacher.attributes.contactNo}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Address - {{teacher.attributes.address}}</p>
+            <p>Qualifications - {{teacher.attributes.qualification}}</p>
+            </div>
+            </div>
+            
+        </div>
+
+    </section>
+
+</body>
+
+</html>

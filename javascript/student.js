@@ -13,6 +13,7 @@ $(document).ready(function () {
      ***************************************/
 
     var user = new Parse.User();
+    var email;
 
     /* ************************************ */
 
@@ -28,6 +29,12 @@ $(document).ready(function () {
 
     /************************************* */
 
+    /*** GET THE CURRENT SESSION ***********/
+
+    var currentSession = currentUser.attributes.sessionToken;
+
+    /* ************************************ */
+
     /****************************************
      ****** DEFINE THE STUDENT CLASS  *******
      ****************************************/
@@ -36,15 +43,16 @@ $(document).ready(function () {
         constructor() {
             super('Student');
         }
-        static setAttributes(schoolCode, name, email, registrationNo, contactNo, standard, section) {
+        static setAttributes(name, address, registrationNo, contactNo, standard, section, photo) {
             var student = new Student();
-            student.set('schoolCode', schoolCode);
+            student.set('schoolId', currentUser.attributes.schoolId);
             student.set('name', name);
-            student.set("email", email);
-            student.set("registrationNo", registrationNo);
+            student.set("address", address);
+            student.set("studentId", registrationNo);
             student.set("contactNo", contactNo);
-            student.set("standard", standard);
+            student.set("class", Number(standard));
             student.set("section", section);
+            student.set("photo", photo);
 
             return student;
         }
@@ -54,16 +62,17 @@ $(document).ready(function () {
 
 
     $("#submit").click(function () {
-        var schoolCode = $("#scode").val();
         var name = $("#name").val();
-        var email = $("#email").val();
+        var address = $("#address").val();
+        email = $("#email").val();
         var registrationNo = Number($("#regno").val());
         var contactNo = Number($("#contact").val());
         var standard = $("#std").val();
         var section = $("#section").val();
+        var photo = $("#photo").val();
 
         /* Check if all the input forms are correctly filled !!   */
-        if (schoolCode && name && email && standard && section) { // if any field is empty
+        if (name && email && standard && section && address) { // if any field is empty
             if (!validateEmail(email)) {
                 alert("Email ID is not valid!");
                 clearAllFields();
@@ -76,11 +85,24 @@ $(document).ready(function () {
             } else if (isNaN(contactNo)) {
                 alert("Contact No should be an integer!");
                 clearAllFields();
-            } else if (!/\S/.test(schoolCode)) {
-                alert("School Code can't be empty spaces!!");
-                clearAllFields();
             } else {
-                saveToCloud(schoolCode, name, email, registrationNo, contactNo, standard, section);
+
+                 alert("inside the all clear block");
+                var fileUpload = $("#photo")[0];
+                if (fileUpload.files.length > 0) {
+                    var file = fileUpload.files[0];
+                    var filename = "display." + extractTheFileExtension(photo);
+
+                    var parseFile = new Parse.File(filename, file); console.log(parseFile);
+
+                    saveToCloud(name, address, registrationNo, contactNo, standard, section, parseFile);
+
+                }
+
+
+
+                clearAllFields();
+                
             }
 
         } else {
@@ -97,8 +119,10 @@ $(document).ready(function () {
         $("#email").val("");
         $("#regno").val("");
         $("#contact").val("");
-        $("#std").val("I");
-        $("#section").val("A")
+        $("#std").val("1");
+        $("#section").val("A");
+        $("#photo").val("");
+        $("#address").val("");
     }
 
     /*********************** CHECK VALIDITY OF EMAIL ID *********************/
@@ -110,9 +134,9 @@ $(document).ready(function () {
 
     /****************************** SAVING TO THE CLOUD *********************/
 
-    function saveToCloud(schoolCode, name, email, registrationNo, contactNo, standard, section) {
+    function saveToCloud(name, address, registrationNo, contactNo, standard, section, photo) {
 
-        var newStudent = Student.setAttributes(schoolCode, name, email, registrationNo, contactNo, standard, section);
+        var newStudent = Student.setAttributes(name, address, registrationNo, contactNo, standard, section, photo);
 
         newStudent.save(null, {
             success: function (newStudent) {
@@ -130,17 +154,16 @@ $(document).ready(function () {
 
 
 
-        user.set("username", schoolCode + registrationNo);
+        user.set("username", currentUser.attributes.schoolId + registrationNo);
 
         user.set("password", generatePassword($("#contact").val()));
 
-        console.log(generatePassword($("#contact").val()));
-
         user.set("email", email);
 
-        user.set("accountType", "student");
+        user.set("userType", "student");
 
-        user.set("contactNo",Number($("#contact").val()));
+        user.set("schoolId", currentUser.attributes.schoolId);
+
 
         /*  **************************************************************************** 
             *************** STORE THE REGISTERED USER TO CLOUD *************************
@@ -151,27 +174,24 @@ $(document).ready(function () {
 
                 alert("User added");
 
-                /*
-                https://control.msg91.com/api/sendhttp.php?authkey=YourAuthKey&mobiles=9999999999&message=test & new&mobile&sender=RECESS&route=4
-                
-                174873AZUblpkT3Pm59bc04e1
-                
-                You have successfully registered fro RECESS . Your username - *** & password - ****
-                */
-
                 /*********************************************** */
                 /* *********** LOGOUT   ************************ */
                 /*********************************************** */
-
+                sendMessage(contactNo, registrationNo);
                 var currentUser = Parse.User.current();
                 alert("Successfully registered");
-                Parse.User.logOut();
+                Parse.User.logOut().then(function () {
+                    Parse.User.become(currentSession).then(function (user) {
+                        location.reload();
+                        clearAllFields();
+                    }, function (error) {
+                        // The token could not be validated.
+                    });
+                });
 
                 /*********************************************** */
                 /* *********** SEND MESSAGE TO THE USER  ******* */
                 /*********************************************** */
-
-                sendMessage(contactNo, schoolCode, registrationNo);
 
                 clearAllFields();
 
@@ -190,9 +210,14 @@ $(document).ready(function () {
         return a.toString();
     }
 
-    function sendMessage(contactNo, schoolCode, registrationNo) {
+    function extractTheFileExtension(str) {
+        str = str.split(".");
+        return str[str.length - 1];
+    }
 
-        var message = "Your username - " + schoolCode + registrationNo + " password - " + generatePassword(contactNo.toString());
+    function sendMessage(contactNo, registrationNo) {
+
+        var message = "Your username - " + currentUser.attributes.schoolId + registrationNo + " password - " + generatePassword(contactNo.toString());
         var message = encodeURI(message);
         console.log(generatePassword(contactNo.toString()));
         var temp = "https://control.msg91.com/api/sendhttp.php?" +
@@ -215,7 +240,7 @@ $(document).ready(function () {
 
     $("#regLink").addClass("active");
     $("#regLink1").addClass("active");
-    
+
 
     /************************************* */
     /*************  LOG OUT ****************/
