@@ -231,6 +231,25 @@ $(document).ready(function () {
 
     }
 
+    /****************** CLEAR BUTTON **********/
+
+    $("#clear").click(function () {
+        clearTheForm();
+    });
+
+    /***************** CLEAR THE FORMS ****** */
+
+    function clearTheForm() {
+        $("#photo").val("");
+        $("#regno").val("");
+        $("#name").val("");
+        $("#email").val("");
+        $("#contact").val("");
+        $("#std").val("1");
+        $("#section").val("A");
+        $("#address").val("");
+    }
+
 
     /*
     
@@ -238,8 +257,6 @@ $(document).ready(function () {
 
     */
 
-    $("#regLink").addClass("active");
-    $("#regLink1").addClass("active");
 
 
     /************************************* */

@@ -160,7 +160,7 @@ $(document).ready(function () {
         $("#list").html("");
         //var temp = "<tr><td>" + newDate + "</td><td>" + subject + "</td><td>" + maxMarks + "</td><td>A</td></tr>" ;
         for (var i = 0; i < dateList.length; i++) {
-            var temp = "<tr><td>" + dateList[i] + "</td><td>" + subjectList[i] + "</td><td>" + maxMarksList[i] + "<td> </td></td></tr>";
+            var temp = "<tr><td>" + dateList[i] + "</td><td>" + subjectList[i] + "</td><td>" + maxMarksList[i] + "</td></tr>";
             $("#list").append(temp);
         }
     }
@@ -196,6 +196,8 @@ $(document).ready(function () {
         $("#std").val("1");
         $("#timing").val("");
     }
+
+
 
     /************************************* */
     /*************  LOG OUT ****************/

@@ -124,6 +124,21 @@ function setTheProperArray() {
     }
 }
 
+
+
+    /************************************* */
+    /************************************* */
+    /*************  LOG OUT ****************/
+    /***************************************/
+    
+    $scope.logOut = function () {
+        if (currentUser) {
+            Parse.User.logOut().then(() => {
+                location.href = "../index.html";
+            });
+        }
+    };
+
 });
 
 /**************** GLOBAL FUNCTIONS ***********************/

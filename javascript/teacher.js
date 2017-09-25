@@ -251,14 +251,32 @@ $(document).ready(function () {
 
     /************************************* */
 
+
+    /****************** CLEAR BUTTON **********/
+
+    $("#clear").click(function () {
+        clearTheForm();
+    });
+
+    /***************** CLEAR THE FORMS ****** */
+
+    function clearTheForm() {
+        $("#photo").val("");
+        $("#trid").val("");
+        $("#name").val("");
+        $("#email").val("");
+        $("#contact").val("");
+        $("#dept").val("");
+        $("#qftns").val("");
+        $("#address").val("");
+    }
+
     /*
     
         My Edit for active class
 
     */
 
-    $("#regLink").addClass("active");
-    $("#regLink2").addClass("active");
 
 
 });

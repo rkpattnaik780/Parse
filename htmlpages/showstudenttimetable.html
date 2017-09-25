@@ -25,46 +25,204 @@
              ***************** EXTERNAL STYLESHEETS****************
              ******************************************************-->
 
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="../stylesheets/navbar.css" rel="stylesheet" type="text/css">
+    <link href="../stylesheets/panel.css" rel="stylesheet" type="text/css">
     <link href="../stylesheets/showstudenttimetable.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
-<body ng-app="studentTimeTable" ng-controller="stabCtrl">
+<body ng-app="studentTimeTable" ng-controller="stabCtrl" class="ng-cloak">
 
-    <section class="container ng-cloak">
-        
-        <h1>Timetables</h1>
-
-    <select ng-model="selectedClass" class="form-control" ng-change="filter()">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
-    </select>
-
-
-    <div ng-repeat = "x in list"><b>Class</b> - {{x.attributes.class}} {{x.attributes.section}}
-        <p><b>Day - </b> {{x.attributes.day}}<p>
-        <div class = "row1">
-            <h3>Teacher</h3>
-            <p ng-repeat = "t in x.attributes.teacher">{{t}}</p>           
+   <!--My Nav-->
+   <nav>
+        <div class="logo">
+            <a href="#">
+                <span><img src = "../images/recess_temp_logo.png" width = "200px" height = "100px"></span>
+            </a>
         </div>
-        <div class = "row1">
-            <h3>subject</h3>
-            <p ng-repeat = "s in x.attributes.subject">{{s}}</p>
-        </div>
-    </div>
-    </section>
+        <ul class="main-nav">
+            <li>
+                <a href="dashboard.html">
+                    <span class="fa fa-home"></span>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#reg"><span class="fa fa-id-card"></span>
+                        Registration<span class="arrow"></span></a>
+                
+                <ul class="collapse" id="reg">
+                    <li><a href = "studentreg.html"><span class="fa fa-plus"></span>New Student Registration</a></li>
+                    <li><a href = "showstudents.html"><span class="fa fa-eye"></span>View All Students</a></li>
+                    <li><a href = "teacher_reg.html"><span class="fa fa-plus"></span>New Teacher Registration</a></li>
+                    <li><a href = "showteachers.html"><span class="fa fa-eye"></span>View All Teachers</a></li>
+                </ul>
+            </li>  
+            
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#exam" >
+                    <span class="fa fa-wpforms"></span>
+                    Exam Schedule
+                </a>
+                <ul class="collapse" id="exam">
+                    <li><a href = "newschedule_exam.html"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
+                    <li><a href = "showexamschedule.html"><span class="fa fa-eye"></span>View Exam Schedule</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#timeTableList" class = "active" >
+                    <span class="fa fa-table"></span>
+                    Time Tables
+                </a>
+                <ul class="collapse" id="timeTableList">
+                    <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>New Student Timetable</a></li>
+                    <li><a href = "showstudenttimetable.html" class = "active"><span class="fa fa-eye"></span>View Student Timetable</a></li>
+                    <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>New Teacher Timetable</a></li>
+                    <li><a href = "showteachertimetable.html"><span class="fa fa-eye"></span>View Teacher Timetable</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#eventList">
+                    <span class="fa fa-newspaper-o"></span>
+                    Events
+                </a>
+                <ul class="collapse" id="eventList">
+                    <li><a href = "event.html"><span class="fa fa-plus"></span>New Event</a></li>
+                    <li><a href = "showevents.html"><span class="fa fa-eye"></span>View Events</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#holidayList">
+                    <span class="fa fa-calendar"></span>
+                    Holidays
+                </a>
+                <ul class="collapse" id="holidayList">
+                    <li><a href = "holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
+                    <li><a href = "showholidays.html"><span class="fa fa-eye"></span>View Holidays</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#noticeList">
+                    <span class="fa fa-bell"></span>
+                    Notices
+                </a>
+                <ul class="collapse" id="noticeList">
+                    <li><a href = "notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
+                    <li><a href = "shownotices.html"><span class="fa fa-eye"></span>View Notices</a></li>
+                </ul>
+            </li>
+    
+        </ul>
+        </nav>
+            <div class="dashboard">
+                <div class="container clearfix">
+                    <span id = "dashTitle">Admin Panel</span>
+                    <span style = "float: right"><i class = "fa fa-sign-out"></i> <a  ng-click = "logOut()" href = "#" id = "logout"  >LogOut</a></span>
+                    <div class="main-section">
+                        
+                    </div>
+                </div>
+            </div>
 
+    
+
+
+    <!-- My Edit -->
+    <div class = "container">
+            <div class = "row centered-form text-center">
+                <div id = "regform" class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class = "panel panel-info">
+                        <div class = "panel-heading">
+                            <div class = "panel-title">
+                                 Student Time Tables
+                            </div>
+                        </div>
+                        <div class = "panel-body">
+                            
+                                <div class = "row">
+                                    <div class = "form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class = "input-group">
+                                            <span class = "input-group-addon">Time Tables of Class:</span>
+                                            <select ng-model="selectedClass" class="form-control" ng-change="filter()">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "row">
+                                    <table ng-repeat = "x in list" class = "table table-primary table-striped tableList table-bordered">
+                                            
+                                                <thead>
+                                    
+                                                <tr class = "timeTableTitle">
+                                                    <th colspan = "2">
+                                                        
+                                                            Class : {{ x.attributes.class }}&nbsp; {{ x.attributes.section }} - {{ x.attributes.day }}
+                                                        
+                                                        
+                                                    </th>
+
+
+                                                </tr>
+
+                                                <tr>
+                                                        
+                                                    <th>
+                                                        SUBJECT
+                                                    </th>
+
+                                                    <th>
+                                                        TEACHER
+                                                    </th>
+                
+                                                </tr>
+                                                </thead>
+                                    
+                                                <tbody>
+                                                        
+                                                    <td>
+                                                        <p class = "timeTableContent" ng-repeat = "s in x.attributes.subject track by $index">
+                                                            {{s}}
+                                                        </p>
+                                                    </td>
+
+                                                    <td>
+                                                        <p class = "timeTableContent"  ng-repeat = "t in x.attributes.teacher track by $index">
+                                                            {{t}}
+                                                        </p>
+                                                    </td>
+
+                                                </tbody>
+                                    
+                                        </table>
+                                </div>
+                                
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+   
 </body>
 
 </html>

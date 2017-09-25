@@ -25,24 +25,176 @@
              ***************** EXTERNAL STYLESHEETS****************
              ******************************************************-->
 
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="../stylesheets/navbar.css" rel="stylesheet" type="text/css">
+    <link href="../stylesheets/panel.css" rel="stylesheet" type="text/css">
     <link href="../stylesheets/showholidays.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
-<body ng-app = "holiday" ng-controller = "myCtrl">
+<body ng-app = "holiday" ng-controller = "myCtrl" class="ng-cloak">
 
-    <section class="container ng-cloak">
 
-        <h1>Holidays</h1>
-
-        <div ng-repeat = "holiday in list">
-            <h3>{{holiday.attributes.month}}</h3>
-            <p> Days - <span ng-repeat = "d in holiday.attributes.dates">{{d}} </span></p>
+<!--My Nav-->
+<nav>
+        <div class="logo">
+            <a href="#">
+                <span><img src = "../images/recess_temp_logo.png" width = "200px" height = "100px"></span>
+            </a>
         </div>
+        <ul class="main-nav">
+            <li>
+                <a href="dashboard.html">
+                    <span class="fa fa-home"></span>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#reg"><span class="fa fa-id-card"></span>
+                        Registration<span class="arrow"></span></a>
+                
+                <ul class="collapse" id="reg">
+                    <li><a href = "studentreg.html"><span class="fa fa-plus"></span>New Student Registration</a></li>
+                    <li><a href = "showstudents.html"><span class="fa fa-eye"></span>View All Students</a></li>
+                    <li><a href = "teacher_reg.html"><span class="fa fa-plus"></span>New Teacher Registration</a></li>
+                    <li><a href = "showteachers.html"><span class="fa fa-eye"></span>View All Teachers</a></li>
+                </ul>
+            </li>  
+            
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#exam" >
+                    <span class="fa fa-wpforms"></span>
+                    Exam Schedule
+                </a>
+                <ul class="collapse" id="exam">
+                    <li><a href = "newschedule_exam.html"><span class="fa fa-plus"></span>New Exam Schedule</a></li>
+                    <li><a href = "showexamschedule.html"><span class="fa fa-eye"></span>View Exam Schedule</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#timeTableList" >
+                    <span class="fa fa-table"></span>
+                    Time Tables
+                </a>
+                <ul class="collapse" id="timeTableList">
+                    <li><a href = "student_timetable.html"><span class="fa fa-plus"></span>New Student Timetable</a></li>
+                    <li><a href = "showstudenttimetable.html"><span class="fa fa-eye"></span>View Student Timetable</a></li>
+                    <li><a href = "teachertimetable.html"><span class="fa fa-plus"></span>New Teacher Timetable</a></li>
+                    <li><a href = "showteachertimetable.html"><span class="fa fa-eye"></span>View Teacher Timetable</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#eventList">
+                    <span class="fa fa-newspaper-o"></span>
+                    Events
+                </a>
+                <ul class="collapse" id="eventList">
+                    <li><a href = "event.html"><span class="fa fa-plus"></span>New Event</a></li>
+                    <li><a href = "showevents.html"><span class="fa fa-eye"></span>View Events</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#holidayList" class = "active">
+                    <span class="fa fa-calendar"></span>
+                    Holidays
+                </a>
+                <ul class="collapse" id="holidayList">
+                    <li><a href = "holiday.html"><span class="fa fa-plus"></span>New Holiday</a></li>
+                    <li><a href = "showholidays.html" class = "active"><span class="fa fa-eye"></span>View Holidays</a></li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#noticeList">
+                    <span class="fa fa-bell"></span>
+                    Notices
+                </a>
+                <ul class="collapse" id="noticeList">
+                    <li><a href = "notice.html"><span class="fa fa-plus"></span>New Notice</a></li>
+                    <li><a href = "shownotices.html"><span class="fa fa-eye"></span>View Notices</a></li>
+                </ul>
+            </li>
+    
+        </ul>
+        </nav>
+            <div class="dashboard">
+                <div class="container clearfix">
+                    <span id = "dashTitle">Admin Panel</span>
+                    <span style = "float: right"><i class = "fa fa-sign-out"></i> <a  ng-click = "logOut()" href = "#" id = "logout"  >LogOut</a></span>
+                    <div class="main-section">
+                        
+                    </div>
+                </div>
+            </div>
 
-    </section>
 
+    <!-- My Edit -->
+    <div class = "container">
+            <div class = "row centered-form text-center">
+                <div id = "regform" class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class = "panel panel-info" style = "margin-top: 6%;">
+                        <div class = "panel-heading">
+                            <div class = "panel-title">Holidays</div>
+                        </div>
+                        <div class = "panel-body">
+                            <div id = "regform" class = " col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <div ng-repeat = "holiday in list" class = "panel panel-primary contentPanel">
+                                    <div class = "panel-heading">
+                                        <div ng-switch="{{holiday.attributes.month}}">
+                                            <div ng-switch-when = "1">
+                                                <div class = "panel-title">January</div>
+                                            </div>
+                                            <div ng-switch-when = "2">
+                                                <div class = "panel-title">February</div>
+                                            </div>
+                                            <div ng-switch-when = "3">
+                                                <div class = "panel-title">March</div>
+                                            </div>
+                                            <div ng-switch-when = "4">
+                                                <div class = "panel-title">April</div>
+                                            </div>
+                                            <div ng-switch-when = "5">
+                                                <div class = "panel-title">May</div>
+                                            </div>
+                                            <div ng-switch-when = "6">
+                                                <div class = "panel-title">June</div>
+                                            </div>
+                                            <div ng-switch-when = "7">
+                                                <div class = "panel-title">July</div>
+                                            </div>
+                                            <div ng-switch-when = "8">
+                                                <div class = "panel-title">August</div>
+                                            </div>
+                                            <div ng-switch-when = "9">
+                                                <div class = "panel-title">September</div>
+                                            </div>
+                                            <div ng-switch-when = "10">
+                                                <div class = "panel-title">October</div>
+                                            </div>
+                                            <div ng-switch-when = "11">
+                                                <div class = "panel-title">November</div>
+                                            </div>
+                                            <div ng-switch-when = "12">
+                                                <div class = "panel-title">December</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "panel-body">
+                                        <div class = "row">
+                                            <p style = "font-size: 15px;overflow-wrap: break-word;" ><b>Days : </b><span ng-repeat = "d in holiday.attributes.dates">{{d}} </span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
